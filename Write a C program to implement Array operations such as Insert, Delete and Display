@@ -1,0 +1,46 @@
+#include <stdio.h>
+#define MAX_SIZE 100
+void insertElement(int array[], int size, int element, int position) {
+    if (position < 0 || position > size) {
+        printf("Invalid position to insert.\n");
+        return;
+    }
+    if (size >= MAX_SIZE) {
+        printf("Array is full, cannot insert element.\n");
+        return;
+    }
+    for (int i = size; i > position; i--) {
+        array[i] = array[i - 1];
+    }
+    array[position] = element;
+    printf("Element %d inserted successfully.\n", element);
+}
+void deleteElement(int array[], int size, int position) {
+    if (position < 0 || position >= size) {
+        printf("Invalid position to delete.\n");
+        return;
+    }
+    for (int i = position; i < size - 1; i++) {
+        array[i] = array[i + 1];
+    }
+    printf("Element at position %d deleted successfully.\n", position);
+}
+void displayArray(int array[], int size) {
+    printf("Array elements: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", array[i]);
+    }
+    printf("\n");
+}
+int main() {
+    int array[MAX_SIZE];
+    int size = 0;
+    insertElement(array, size++, 10, 0);
+    insertElement(array, size++, 20, 1);
+    insertElement(array, size++, 30, 2);
+    insertElement(array, size++, 40, 3);
+    displayArray(array, size);
+    deleteElement(array, size--, 2);
+    displayArray(array, size);
+    return 0;
+}
